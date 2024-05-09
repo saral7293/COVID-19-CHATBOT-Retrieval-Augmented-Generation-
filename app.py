@@ -85,7 +85,7 @@ def display_chat_history():
  # Initialize session state
 display_chat_history()
 # Load model and database
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "your_openai_api_key"
 embedding_function = OpenAIEmbeddings()
 db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
 
