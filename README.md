@@ -1,7 +1,6 @@
 ## About
 This repository contains a Chatbot application built using Streamlit, LangChain, and ChromaDB, designed to provide important information about COVID-19 based on the contents of PDF files. The chatbot utilizes a Retrieval-Augmented-Generation (RAG) approach, where relevant information is retrieved from a vector database and then processed by a language model to generate a final answer.
 ## Table of Contents
-* [Chatbot](#chatbot)
 * [Features](#features)
 * [Architecture](#architecture)
 * [Installation](#installation)
@@ -9,11 +8,6 @@ This repository contains a Chatbot application built using Streamlit, LangChain,
 * [Deployment](#deployment)
 * [Contribution](#contribution)
 * [FutureWork](#futurework)
-## Chatbot
-Try the chatbot using the below url:
-```
-http://34.244.198.170:8501/
-```
 ## Features
 1. PDF Ingestion: The chatbot can ingest PDF files containing COVID-19 related information and create a vector database using ChromaDB.
 2. Question Answering: Users can ask questions related to COVID-19, and the chatbot will retrieve relevant information from the vector database and generate a response using a language model.
