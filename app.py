@@ -13,7 +13,11 @@ from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
 import logging
+from dotenv import load_dotenv
 import gunicorn
+
+# Load environment variables from .env file
+load_dotenv()
 
 logging.getLogger('streamlit').setLevel(logging.ERROR)
 CHROMA_PATH = "chroma"
@@ -28,7 +32,8 @@ Answer the question based only on the following context:
 Answer the question based on the above context: {question}
 """
 
-st.title("Covid-19 Chatbot") 
+st.title("Covid-19 Chatbot")
+
 # Function to query response and handle user interaction
 def query_res(query_text, db, current_position):
     # Search the DB.
@@ -83,13 +88,15 @@ def display_chat_history():
     for item in st.session_state.chat_history:
         st.sidebar.text(item)
 
-
 # Streamlit UI
- # Initialize session state
 display_chat_history()
+
 # Load model and database
-#os.environ["OPENAI_API_KEY"] = "your_openai_api_key"
-embedding_function = OpenAIEmbeddings()
+openai_api_key = os.getenv("OPENAI_API_KEY")
+if not openai_api_key:
+    st.error("OpenAI API key not found. Please set it in the .env file.")
+
+embedding_function = OpenAIEmbeddings(api_key=openai_api_key)
 db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
 
 user_query = st.text_input("Ask me something about Covid-19: ")
@@ -99,5 +106,4 @@ if user_query:
     query_res(user_query, db, st.session_state.current_position)
 
 st.cache_data.clear()
-# Clearing all cached resource functions
-st.cache_resource.clear()    
+st.cache_resource.clear()
