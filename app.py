@@ -14,7 +14,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
 import logging
 from dotenv import load_dotenv
-import gunicorn
 
 # Load environment variables from .env file
 load_dotenv()
