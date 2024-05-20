@@ -13,6 +13,7 @@ from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
 
+logging.getLogger('streamlit').setLevel(logging.ERROR)
 CHROMA_PATH = "chroma"
 
 PROMPT_TEMPLATE = """
@@ -94,3 +95,7 @@ user_query = st.text_input("Ask me something about Covid-19: ")
 if user_query:
     # Generate response
     query_res(user_query, db, st.session_state.current_position)
+
+st.cache_data.clear()
+# Clearing all cached resource functions
+st.cache_resource.clear()    
